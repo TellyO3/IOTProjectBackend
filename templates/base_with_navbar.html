@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+    {#    <ul class="nav justify-content-center nav-tabs nav-pills">#}
+    {#        {% if current_user.is_authenticated %}#}
+    {#            <li class="nav-item">#}
+    {#                <a class="navbar-link" href="{{ url_for('#') }}">Uitloggen</a>#}
+    {#            </li>#}
+    {#        {% else %}#}
+    {#            <li class="nav-item">#}
+    {#                <a class="navbar-link" href="{{ url_for('interface.register') }}">Account registreren‎</a>#}
+    {#            </li>#}
+    {#            <li class="nav-item">#}
+    {#                <a class="navbar-link" href="{{ url_for('interface.login') }}"> Inloggen</a>#}
+    {#            </li>#}
+    {#        {% endif %}#}
+    {#    </ul>#}
+    <ul class="nav nav-pills justify-content-center navbar-dark bg-dark-subtle">
+        {% if current_user.is_authenticated %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for(('interface.logout'))}}">Uitloggen</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('interface.register') }}">Registreren</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('interface.login') }}">Inloggen</a>
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}

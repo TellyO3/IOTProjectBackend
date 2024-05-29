@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Film fan website</title>
+    {{ bootstrap.load_css() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+ {{ bootstrap.load_js() }}
+
+{% block navbar %}
+{% endblock %}
+
+{% for mess in get_flashed_messages() %}
+    <div class="alert alert-primary" role="alert">{{ mess }}</div>
+{% endfor %}
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

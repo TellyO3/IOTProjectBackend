@@ -1,0 +1,14 @@
+{% extends "base_with_navbar.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+    {{ render_form(form)}}
+{#    <form method="POST">#}
+{#        {{ form.hidden_tag() }}<br>#}
+{#        {{ form.username.label }}{{ form.username() }}<br>#}
+{#        {{ form.password.label }}{{ form.password() }}<br>#}
+{#        {{ form.pass_confirm.label }}{{ form.pass_confirm() }}<br>#}
+{#        {{ form.submit() }}#}
+{#    </form>#}
+{% endblock %}

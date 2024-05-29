@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+{% extends 'base_with_navbar.html' %}
 
-</head>
-<body>
-<div>
-    <form method="POST">
-        {{ form.hidden_tag() }}
-        {{ form.amount.label }}{{ form.amount() }}
-        {{ form.submit }}
-    </form>
-    <br>
-    <h1>{{ waiting_time }}</h1>
-</div>
+{% block head %}
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <div>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.amount.label }}{{ form.amount() }}
+            {{ form.submit }}
+        </form>
+        <br>
+        <h1>{{ waiting_time }}</h1>
+    </div>
+{% endblock %}
