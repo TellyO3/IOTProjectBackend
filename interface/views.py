@@ -2,7 +2,7 @@ from flask import Blueprint, request, jsonify, render_template, redirect, url_fo
 from flask_login import login_user, login_required, logout_user, current_user
 
 import utils.queue
-from interface.forms import PeopleInputForm, RegistrationForm, LoginForm
+from interface.forms import AdminPanelForm, RegistrationForm, LoginForm
 from interface.models import User
 from extensions import db
 
@@ -41,13 +41,15 @@ def reset_delay():
 
 @blueprint.route('/', methods=['GET', 'POST'])
 def home():
-    form = PeopleInputForm()
+    form = AdminPanelForm()
     if not current_user.is_authenticated:
         return redirect(url_for('interface.login'))
 
     if form.validate_on_submit():
-        amount = form.amount.data
-        queue.update_queue(amount)
+        people_amount = form.people_amount.data
+        truck_amount = form.truck_amount.data
+        queue.update_queue(people_amount)
+        queue.update_truck_amount(truck_amount)
         waiting_time = queue.get_waiting_time()
         return render_template('home.html', form=form, waiting_time=waiting_time)
 
@@ -62,7 +64,7 @@ def register():
                     password=form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('/'))
+        return redirect(url_for('interface.home'))
     return render_template('register.html', form=form)
 
 

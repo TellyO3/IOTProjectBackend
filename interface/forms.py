@@ -1,13 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms.fields.numeric import IntegerField
+from wtforms.fields.numeric import IntegerField, FloatField
 from wtforms.fields.simple import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, ValidationError, EqualTo, Email
+from wtforms.validators import DataRequired, ValidationError, EqualTo
 
 from interface.models import User
 
 
-class PeopleInputForm(FlaskForm):
-    amount = IntegerField('Amount of people in queue: ')
+class AdminPanelForm(FlaskForm):
+    people_amount = IntegerField('Aantal mensen in de rij: ')
+    truck_amount = FloatField('Aantal trucks die gevuld worden: ')
     submit = SubmitField('Enter')
 
 

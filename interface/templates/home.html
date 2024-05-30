@@ -7,7 +7,8 @@
     <div>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.amount.label }}{{ form.amount() }}
+            {{ form.people_amount.label }} {{ form.people_amount() }}<br>
+            {{ form.truck_amount.label }} {{ form.truck_amount() }}
             {{ form.submit }}
         </form>
         <br>

@@ -7,6 +7,7 @@ class Queue:
         self.waiting_time = 0
         self.delay_amount = 0
         self.trip_duration = trip_duration
+        self.truck_amount = 1
 
     def update_queue(self, change):
         """Remove or add someone from the queue."""
@@ -14,14 +15,19 @@ class Queue:
         self.amount_of_people += change
         self.update_waiting_time()
 
+    def update_truck_amount(self, update):
+        self.truck_amount = update
+
     def update_waiting_time(self):
         """Change the waiting time in the queue."""
+
 
         if self.amount_of_people <= config.capacity_truck:
             self.waiting_time = 5
 
         else:
             people_per_min = config.capacity_truck / self.trip_duration
+            people_per_min = people_per_min * self.truck_amount
             queue_time = self.amount_of_people / people_per_min
             self.waiting_time = int(queue_time)
 
