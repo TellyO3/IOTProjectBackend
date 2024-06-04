@@ -51,6 +51,7 @@ def home():
         queue.update_queue(people_amount)
         queue.update_truck_amount(truck_amount)
         waiting_time = queue.get_waiting_time()
+
         return render_template('home.html', form=form, waiting_time=waiting_time)
 
     return render_template('home.html', form=form)

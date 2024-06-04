@@ -43,4 +43,4 @@ class Queue:
 
     def get_waiting_time(self):
         self.update_waiting_time()
-        return f"Waiting time is: {self.waiting_time} minutes."
+        return f"Wachttijd: {self.waiting_time} minuten."
