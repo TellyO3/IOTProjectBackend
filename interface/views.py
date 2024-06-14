@@ -9,6 +9,13 @@ from extensions import db
 blueprint = Blueprint('interface', __name__, template_folder='templates')
 queue = utils.queue.Queue()
 
+@blueprint.route('/display', methods=['GET'])
+def queue_display():
+    wachttijd = queue.get_waiting_time()
+    response = {
+        'wachttijd': wachttijd
+    }
+    return jsonify(response)
 
 @blueprint.route('/queue/update', methods=['POST'])
 def update():
@@ -51,8 +58,9 @@ def home():
         queue.update_queue(people_amount)
         queue.update_truck_amount(truck_amount)
         waiting_time = queue.get_waiting_time()
+        people_count = queue.get_people_amount()
 
-        return render_template('home.html', form=form, waiting_time=waiting_time)
+        return render_template('home.html', form=form, waiting_time=waiting_time, people_count=people_count)
 
     return render_template('home.html', form=form)
 

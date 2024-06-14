@@ -44,3 +44,6 @@ class Queue:
     def get_waiting_time(self):
         self.update_waiting_time()
         return f"Wachttijd: {self.waiting_time} minuten."
+
+    def get_people_amount(self):
+        return f"Aantal mensen: {self.amount_of_people}."
