@@ -1,21 +1,22 @@
 {% extends 'base_with_navbar.html' %}
-{% set active_page = "interface.home" %}
+{% set active_page = "interface.settings" %}
 
 {% block head %}
-    <link href="/static/stylesheets/home.css" rel="stylesheet">
-    <meta http-equiv="refresh" content="10" />
+    <link href="/static/stylesheets/settings.css" rel="stylesheet">
 {% endblock %}
 
 {% from 'bootstrap5/form.html' import render_field %}
 
 {% block content %}
-    <div>
-        <h1>{{ waiting_time }}<br> {{ people_amount }}</h1>
-        <form class="form-home" method="POST">
+     <div class="settings-wrapper d-flex align-items-center justify-content-center">
+        <form class="form-settings" method="POST">
             {{ form.csrf_token() }}
             <div class="row">
                 <div class="col-12 mb-3">
-                    {{ render_field(form.change_people) }}
+                    {{ render_field(form.truck_count) }}
+                </div>
+                <div class="col-12 mb-3">
+                    {{ render_field(form.delay_amount) }}
                 </div>
             </div>
             <div class="d-grid mt-3">

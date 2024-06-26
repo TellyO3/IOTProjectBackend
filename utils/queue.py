@@ -7,43 +7,45 @@ class Queue:
         self.waiting_time = 0
         self.delay_amount = 0
         self.trip_duration = trip_duration
-        self.truck_amount = 1
+        self.truck_count = 1
 
     def update_queue(self, change):
         """Remove or add someone from the queue."""
-
         self.amount_of_people += change
         self.update_waiting_time()
 
     def update_truck_amount(self, update):
-        self.truck_amount = update
+        if update > 0:
+            self.truck_count = update
+        self.update_waiting_time()
 
     def update_waiting_time(self):
         """Change the waiting time in the queue."""
-
 
         if self.amount_of_people <= config.capacity_truck:
             self.waiting_time = 5
 
         else:
             people_per_min = config.capacity_truck / self.trip_duration
-            people_per_min = people_per_min * self.truck_amount
+            people_per_min = people_per_min * self.truck_count
             queue_time = self.amount_of_people / people_per_min
-            self.waiting_time = int(queue_time)
+            actual_time = queue_time + self.delay_amount
+            self.waiting_time = int(actual_time)
 
-    def add_delay(self, delay=10):
+    def change_delay(self, delay=10):
         """Add a delay to the queue measured in minutes, by default the delay is 10 minutes."""
 
-        self.delay_amount += delay * 60
+        self.delay_amount = delay
+        self.update_waiting_time()
 
     def reset_delay(self):
         """Reset the delay"""
 
-        self.waiting_time = 0
+        self.delay_amount = 0
 
     def get_waiting_time(self):
         self.update_waiting_time()
-        return f"Wachttijd: {self.waiting_time} minuten."
+        return f"De huidige wachttijd is {self.waiting_time} minuten. Met een oponthoud van {self.delay_amount} minuten."
 
     def get_people_amount(self):
-        return f"Aantal mensen: {self.amount_of_people}."
+        return f"De huidige hoeveelheid wachtende is {self.amount_of_people}."

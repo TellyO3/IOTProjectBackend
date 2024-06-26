@@ -1,19 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>log in</title>
-</head>
-<body>
 {% extends "base_with_navbar.html" %}
-{% block content %}
-<form method="POST">
-    {{ form.hidden_tag() }}
-    <br>
-    {{ form.username.label }} {{ form.username() }}
-    {{ form.password.label }}{{ form.password() }}
-    {{ form.submit }}
-</form>
+{% set active_page = "interface.login" %}
+
+{% block head %}
+    <link href="/static/stylesheets/signin.css" rel="stylesheet">
 {% endblock %}
-</body>
-</html>
+
+{% from 'bootstrap5/form.html' import render_field %}
+
+{% block content %}
+    <div class="signin-wrapper d-flex align-items-center justify-content-center">
+        <form class="form-signin" method="POST">
+            {{ form.csrf_token() }}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    {{ render_field(form.username) }}
+                </div>
+                <div class="col-12 mb-3">
+                    {{ render_field(form.password) }}
+                </div>
+            </div>
+            <div class="d-grid mt-3">
+                {{ render_field(form.submit, class="btn btn-primary btn-block") }}
+            </div>
+            <p class="mt-5 mb-3 text-muted text-center">IoT Project F4 Hanze</p>
+        </form>
+    </div>
+{% endblock %}

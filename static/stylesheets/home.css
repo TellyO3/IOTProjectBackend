@@ -1,0 +1,32 @@
+.home-wrapper {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 15px 40px;
+}
+
+.form-home {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+}
+
+.form-home .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-home .form-control:focus {
+    z-index: 2;
+}
+
+.form-home input[id="people"],
+.form-home input[id="username"],
+.form-home input[id="password"],
+.form-home input[id="pass_confirm"] {
+    border-radius: 0;
+}

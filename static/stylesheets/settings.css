@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.settings-wrapper {
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 15px 40px;
+}
+
+.form-settings {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+}
+
+.form-settings .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-settings .form-control:focus {
+    z-index: 2;
+}
+
+.form-settings input[id="truck_count"],
+.form-settings input[id="delay_amount"]{
+    border-radius: 0;
+}

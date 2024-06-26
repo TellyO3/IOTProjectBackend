@@ -6,6 +6,7 @@ import requests
 # Define the URL for the request
 url = f"http://{'172.20.10.8'}:{5000}{'/display'}"
 
+
 class CounterApp:
     def __init__(self, master):
         self.master = master
@@ -26,7 +27,8 @@ class CounterApp:
         self.image_id = self.canvas.create_image(0, 0, anchor=tk.NW, image=self.image)
 
         # Create a text label on top of the image
-        self.text_id = self.canvas.create_text(400, 250, text="Counter: 0", fill="white", font=("Times New Roman", 20, "bold"), anchor=tk.CENTER)
+        self.text_id = self.canvas.create_text(400, 250, text="Counter: 0", fill="white",
+                                               font=("Times New Roman", 20, "bold"), anchor=tk.CENTER)
 
         # Bind the configure event to update the image size when the window is resized
         self.master.bind('<Configure>', self.resize_image)
@@ -74,6 +76,7 @@ class CounterApp:
         response = requests.get(url)
         data = response.json()
         self.counter = data['wachttijd']
+        self.delay = data['wachttijd_delay']
         self.update_counter_label()
         # Schedule the update_counter() function to run again after 1 second
         self.master.after(1000, self.update_counter)

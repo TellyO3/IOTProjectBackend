@@ -1,32 +1,66 @@
 {% extends 'base.html' %}
 
+{% set navigation_bar_user = [
+    ('interface.home', 'Startpagina'),
+    ('interface.settings', 'Instellingen'),
+    ('interface.register', 'Registreren'),
+    ('interface.logout', 'Logout')
+] -%}
+
+{% set navigation_bar = [
+    ('interface.login', 'Inloggen')
+] -%}
+
+{% set active_page = active_page|default('interface.login') -%}
+
 {% block navbar %}
-    {#    <ul class="nav justify-content-center nav-tabs nav-pills">#}
-    {#        {% if current_user.is_authenticated %}#}
-    {#            <li class="nav-item">#}
-    {#                <a class="navbar-link" href="{{ url_for('#') }}">Uitloggen</a>#}
-    {#            </li>#}
-    {#        {% else %}#}
-    {#            <li class="nav-item">#}
-    {#                <a class="navbar-link" href="{{ url_for('interface.register') }}">Account registreren‎</a>#}
-    {#            </li>#}
-    {#            <li class="nav-item">#}
-    {#                <a class="navbar-link" href="{{ url_for('interface.login') }}"> Inloggen</a>#}
-    {#            </li>#}
-    {#        {% endif %}#}
-    {#    </ul>#}
-    <ul class="nav nav-pills justify-content-center navbar-dark bg-dark-subtle">
-        {% if current_user.is_authenticated %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for(('interface.logout'))}}">Uitloggen</a>
-        </li>
-        {% else %}
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('interface.register') }}">Registreren</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('interface.login') }}">Inloggen</a>
-        </li>
-        {% endif %}
-    </ul>
+    <nav class="navbar justify-content-center navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Beheerpaneel wachtrij</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% if current_user.is_authenticated %}
+                        {% for route, caption in navigation_bar_user %}
+                            <li class="nav-item">
+                                    <a class="nav-link {% if route == active_page %}active{% endif %}" href="{{ url_for((route)) }}">{{ caption|e }}</a>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for route, caption in navigation_bar %}
+                            <li class="nav-item">
+                                    <a class="nav-link {% if route == active_page %}active{% endif %}" href="{{ url_for((route)) }}">{{ caption|e }}</a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endblock %}
+
+{#{% block navbar %}#}
+{#    <nav class="navbar justify-content-center navbar-expand-lg bg-primary" data-bs-theme="dark">#}
+{#        <div class="container-fluid">#}
+{#            <a class="navbar-brand" href="#">Beheerpaneel wachtrij</a>#}
+{#            <div class="collapse navbar-collapse" id="navbarNav">#}
+{#                <ul class="navbar-nav">#}
+{#                    {% if current_user.is_authenticated %}#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" href="{{ url_for(('interface.home')) }}">Startpagina</a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" href="{{ url_for('interface.register') }}">Registreren</a>#}
+{#                        </li>#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" href="{{ url_for(('interface.logout')) }}">Uitloggen</a>#}
+{#                        </li>#}
+{#                    {% else %}#}
+{#                        <li class="nav-item">#}
+{#                            <a class="nav-link" href="{{ url_for('interface.login') }}">Inloggen</a>#}
+{#                        </li>#}
+{#                    {% endif %}#}
+{#                </ul>#}
+{#            </div>#}
+{#        </div>#}
+{#    </nav>#}
+{#{% endblock %}#}

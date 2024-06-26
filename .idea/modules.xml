@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IOTProjectBackend.iml" filepath="$PROJECT_DIR$/.idea/IOTProjectBackend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../screen_app/.idea/screen_app.iml" filepath="$PROJECT_DIR$/../screen_app/.idea/screen_app.iml" />
     </modules>
   </component>
 </project>

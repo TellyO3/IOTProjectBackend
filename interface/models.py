@@ -23,4 +23,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password_hash, password)
 
 
+class Settings(db.Model):
+    __tablename__ = 'settings'
+
+    id = db.Column(db.Integer, primary_key=True)
+    truck_count = db.Column(db.Integer, default=1, nullable=False)
+    people_in_queue = db.Column(db.Integer, default=0, nullable=False)
+    delay = db.Column(db.Integer, default=0, nullable=False)
+
+
 

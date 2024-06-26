@@ -15,11 +15,13 @@ def create_app() -> Flask:
     app.config['SECRET_KEY'] = 'tosti'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database.sqlite')
     app.config['FOREIGN_KEYS'] = True
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
     app.register_blueprint(interface.views.blueprint)
 
     with app.app_context():
+        login_manager.login_view = 'interface.login'
+
         bootstrap.init_app(app)
         csrf.init_app(app)
         login_manager.init_app(app)
