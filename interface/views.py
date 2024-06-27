@@ -14,8 +14,10 @@ queue = utils.queue.Queue()
 @csrf.exempt
 def queue_display():
     wachttijd = queue.get_waiting_time()
+    # delay = queue.get_delay()
     response = {
         'wachttijd': wachttijd,
+        # 'wachttijd_delay': delay
     }
     return jsonify(response)
 

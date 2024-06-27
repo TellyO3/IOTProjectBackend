@@ -8,6 +8,7 @@ class Queue:
         self.delay_amount = 0
         self.trip_duration = trip_duration
         self.truck_count = 1
+        self.storing = False
 
     def update_queue(self, change):
         """Remove or add someone from the queue."""
@@ -43,9 +44,22 @@ class Queue:
 
         self.delay_amount = 0
 
+    def get_delay(self):
+        return self.delay_amount
+
+    def update_storing(self, status):
+        if status == True:
+            self.storing = True
+        else:
+            self.storing = False
+
+
     def get_waiting_time(self):
         self.update_waiting_time()
-        return f"De huidige wachttijd is {self.waiting_time} minuten, met een oponthoud van {self.delay_amount} minuten."
+        if self.delay_amount == 0:
+            return f"De huidige wachttijd is {self.waiting_time} minuten"
+        else:
+            return f"De huidige wachttijd is {self.waiting_time} minuten. \n Wegens oponthoud is er extra wachttijd van {self.delay_amount} minuten."
 
     def get_people_amount(self):
         return f"De huidige hoeveelheid wachtende is {self.amount_of_people}."
