@@ -45,7 +45,7 @@ class Queue:
 
     def get_waiting_time(self):
         self.update_waiting_time()
-        return f"De huidige wachttijd is {self.waiting_time} minuten. Met een oponthoud van {self.delay_amount} minuten."
+        return f"De huidige wachttijd is {self.waiting_time} minuten, met een oponthoud van {self.delay_amount} minuten."
 
     def get_people_amount(self):
         return f"De huidige hoeveelheid wachtende is {self.amount_of_people}."
